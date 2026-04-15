@@ -1,19 +1,48 @@
-
+#This config assumes things are being run from the main eaton-fire directory. 
 #Information for downloading data from PRISM's Web Service
 data_download:
   base_url: "https://services.nacse.org/prism/data/get"
-  
+  aoi: "contextual_data/LA_County.geojson"
   region: "us"
   resolution: "800m"
+  resolution_s: "30s" #resolution in arcseconds? not sure the unit but equivalent to region
 
   daily:
-    save_loc: "data/raw/daily"
-    start_date: "2000-01-03"
-    end_date: "2000-01-04"
-    wx_vars: ["ppt", "tmin", "tmax", "tmean", "tdmean", "vpdmin", "vpdmax"]
+    save_loc: "prism_wx/data/raw/daily"
+    start_date: "2025-01-01"
+    end_date: "2025-03-31"
+    wx_vars: ["ppt", "tmean", "vpdmax"]
   
   monthly:
-    save_loc: "data/raw/monthly"
-    year_range: [2000, 2025]
-    months: ["01", "02", "03", "10", "11", "12"]
+    save_loc: "prism_wx/data/raw/monthly"
+    year_range: [2000, 2024] #will include end year
+    months: ["10", "11", "12"]
     wx_vars: ["ppt", "tmean", "vpdmax"]
+
+monthly_lookback_data: 
+  path: "prism_wx/data/processed/monthly_lookback.csv"
+  month_names: {
+    10: "October",
+    11: "November",
+    12: "December"
+  }
+  variable_names: {
+    "vpdmax": "Vapor Pressure Deficit (Mean Daily Maximum, hPa)",
+    "ppt": "Precipitation (mm)",
+    "tmean": "Temperature (Daily Mean, C)",
+  }
+
+daily_data: 
+  path: "prism_wx/data/processed/daily_data.csv"
+  month_names: {
+    01: "January",
+    02: "February",
+    03: "March"
+  }
+  variable_names: {
+    "vpdmax": "Vapor Pressure Deficit (Mean Daily Maximum, hPa)",
+    "ppt": "Precipitation (mm)",
+    "tmean": "Temperature (Daily Mean, C)",
+  }
+
+"figures": "prism_wx/results/figures"
