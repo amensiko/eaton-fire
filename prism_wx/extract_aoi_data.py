@@ -78,7 +78,7 @@ def construct_lookback_df(config, timestep):
             rows.append(
                     {
                         "DateString" : date_string,
-                        "Year" : date_string[:3],
+                        "Year" : date_string[:4],
                         "Month" : date_string[4:6],
                         "Day" : date_string[6:]
                     }
