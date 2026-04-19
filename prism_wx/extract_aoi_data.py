@@ -133,7 +133,7 @@ def main():
     if timestep == "monthly":
         df.to_csv(config["monthly_lookback_data"]["path"])
     elif timestep =="daily":
-        df.to_csv(config["daily_data"]["path"])
+        df.to_csv(config["daily_data"]["path"], index= False)
         print(df.shape)
         print(df.head())
 

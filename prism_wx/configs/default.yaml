@@ -19,6 +19,7 @@ data_download:
     months: ["10", "11", "12"]
     wx_vars: ["ppt", "tmean", "vpdmax"]
 
+#Monthly Lookback Analysis
 monthly_lookback_data: 
   path: "prism_wx/data/processed/monthly_lookback.csv"
   month_names: {
@@ -32,6 +33,7 @@ monthly_lookback_data:
     "tmean": "Temperature (Daily Mean, C)",
   }
 
+#Daily Analysis
 daily_data: 
   path: "prism_wx/data/processed/daily_data.csv"
   month_names: {
