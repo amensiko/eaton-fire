@@ -140,8 +140,6 @@ def construct_multipanel_box(config, df):
 
 
 
-
-
 def main():
     #parse inputs from command line
     parser = argparse.ArgumentParser()
