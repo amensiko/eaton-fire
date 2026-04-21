@@ -10,7 +10,6 @@ Usage:
 
 import pandas as pd
 import plotly.graph_objects as go
-from site_config import build_color_map, load_site_name_map
 
 EVENT_CSV    = "event_window_daily.csv"
 SITE_CSV     = "event_window_site_specific.csv"
@@ -23,12 +22,18 @@ TS_END   = "2025-03-31"
 MONTH_ORDER  = [10, 11, 12, 1, 2, 3]
 MONTH_LABELS = {10: "Oct", 11: "Nov", 12: "Dec", 1: "Jan", 2: "Feb", 3: "Mar"}
 
-# (source, site_key, direction, resolution, dash_style)
+# site_number (int) → display name, for stations missing local_site_name in site-specific CSV
+SITE_NUMBER_MAP = {
+    16:   "Glendora",
+    4010: "North Hollywood (NOHO)",
+}
+
+# (source, site_key, direction, resolution, dash_style, color)
 FOCAL = [
-    ("hourly", "Glendora",                     "E",   "hourly", "solid"),
-    ("hourly", "North Hollywood (NOHO)",        "W",   "hourly", "solid"),
-    ("daily",  "Los Angeles-North Main Street", "SSW", "daily",  "dash"),
-    ("daily",  "Pasadena",                      "S",   "3-day",  "dot"),
+    ("hourly", "Glendora",                     "E",   "hourly", "solid", "#1f77b4"),
+    ("hourly", "North Hollywood (NOHO)",        "W",   "hourly", "solid", "#ff7f0e"),
+    ("daily",  "Los Angeles-North Main Street", "SSW", "daily",  "dash",  "#2ca02c"),
+    ("daily",  "Pasadena",                      "S",   "3-day",  "dot",   "#d62728"),
 ]
 
 
@@ -67,8 +72,7 @@ def build_focal_figure(
     clim["lower"] = clim["clim_mean"] - clim["se"]
 
     # ── Hourly and daily source frames ────────────────────────────────────────
-    site_name_map = load_site_name_map()
-    site_raw["site_name"] = site_raw["site_number"].map(site_name_map).fillna(
+    site_raw["site_name"] = site_raw["site_number"].map(SITE_NUMBER_MAP).fillna(
         site_raw["site_number"].astype(str)
     )
 
@@ -87,8 +91,6 @@ def build_focal_figure(
         .mean()
         .reset_index()
     )
-
-    SITE_COLOR_MAP = build_color_map()
 
     # ── Build figure ──────────────────────────────────────────────────────────
     fig = go.Figure()
@@ -130,9 +132,8 @@ def build_focal_figure(
         ))
 
     # Focal station traces
-    for source, site_key, direction, resolution, dash in FOCAL:
+    for source, site_key, direction, resolution, dash, color in FOCAL:
         legend_label = f"{site_key} ({direction}, {resolution})"
-        color = SITE_COLOR_MAP.get(site_key, "#333333")
 
         if source == "hourly":
             grp = ts[ts["site_name"] == site_key].sort_values("datetime")
