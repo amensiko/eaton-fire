@@ -1,0 +1,92 @@
+.tabs-outer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* this is the actual tabs container with the visible border */
+.nav.nav-tabs {
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    justify-content: center !important;
+    gap: 12px;
+}
+
+.nav-tabs {
+    border: none !important;
+    border-bottom: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.nav-tabs .nav-item {
+    border: none !important;
+    background: transparent !important;
+}
+
+.nav-tabs .nav-link {
+    border: 2px solid transparent !important;
+    border-radius: 12px !important;
+    color: #222 !important;
+    font-weight: 600;
+    background-color: transparent !important;
+    margin-right: 0 !important;
+    padding: 10px 20px;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: white !important;
+    border: 2px solid black !important;
+    color: #222 !important;
+}
+
+.tab-content {
+    background: white !important;
+    border: 2px solid black !important;
+    border-radius: 14px !important;
+    margin-top: 16px;
+}
+
+.tab-pane {
+    background: white !important;
+    border: none !important;
+    border-radius: 14px !important;
+}
+
+.title-box {
+    background: #FFF4B3;
+    border: 2px solid black;
+    border-radius: 18px;
+    padding: 18px 24px;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+}
+
+.dashboard-title {
+    text-align: center;
+}
+.title-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.big-toggle {
+    padding-right: 0.5rem;
+}
+
+.big-toggle .form-check-input {
+    transform: scale(1.6);
+    margin-right: 0.75rem;
+    border: 2px solid black;
+}
+
+.big-toggle .form-check-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
