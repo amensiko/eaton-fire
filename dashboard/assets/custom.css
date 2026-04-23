@@ -90,3 +90,7 @@
     font-size: 1.1rem;
     font-weight: 600;
 }
+.map-graph-wrapper .modebar {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}

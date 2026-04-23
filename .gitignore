@@ -6,3 +6,5 @@ news_data/data/eaton_fire_news_modeling_ready.csv
 dashboard/helpers/data/news/all_stories_with_text.csv
 dashboard/helpers/data/news/all_stories_fixed.csv
 dashboard/helpers/data/news/eaton_fire_news_modeling_ready.csv
+.DS_Store
+__pycache__/

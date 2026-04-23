@@ -10,7 +10,11 @@ from helpers.biodiversity import (
     load_biodiversity_data,
     period_counts,
     fig_taxa_counts,
-    clean_data
+    clean_data,
+    fig_observation_map_slider,
+    make_clean_bigram_table,
+    fig_description_counts_time,
+    fig_description_counts_total,
 )
 
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
@@ -22,6 +26,11 @@ df_effort, period_summary = period_counts(df)
 period_summary["Observations Per User"] = period_summary["Observations Per User"].round(2)
 period_summary["Share of Total Observations"] = period_summary["Share of Total Observations"].round(1)
 period_summary["Share of Total Users"] = period_summary["Share of Total Users"].round(1)
+
+df_text = df[df["has_description"]].copy()
+bigram_table = make_clean_bigram_table(df_text, top_n=20)
+bigram_table.columns = ["Top bigram", "Count"]
+# bigram_table
 
 app.layout = dbc.Container(
     [
@@ -69,7 +78,9 @@ app.layout = dbc.Container(
                                                             id="bio-plot-dropdown",
                                                             options=[
                                                                 {"label": "Monthly Observations", "value": "monthly_observations"},
+                                                                {"label": "Map", "value": "map"},
                                                                 {"label": "Fire Period Observations", "value": "fire_period_observations"},
+                                                                {"label": "Description Analysis", "value": "description_analysis"},
                                                             ],
                                                             value="monthly_observations",
                                                             clearable=False,
@@ -133,22 +144,6 @@ app.layout = dbc.Container(
     className="p-4",
 )
 
-# @app.callback(
-#     Output("biodiversity-monthly-graph", "figure"),
-#     Input("show-users-toggle", "value")
-# )
-# def update_biodiversity_graph(toggle_values):
-#     show_users = "show_users" in toggle_values
-
-#     fig = fig_monthly_taxa_with_users(
-#         taxon_counts=bio_data["taxon_counts"],
-#         monthly_taxon=bio_data["monthly_taxon"],
-#         user_counts=bio_data["user_counts"],
-#         fire_date_str=bio_data["fire_date_str"],
-#         show_users=show_users
-#     )
-
-#     return fig
 
 @app.callback(
     Output("bio-plot-container", "children"),
@@ -210,6 +205,91 @@ def update_bio_plot_container(selected_plot, toggle_values):
                         "border": "1px solid #ddd",
                     },
                 ),
+            ]
+        )
+        toggle_style = {"display": "none"}
+    
+    elif selected_plot == "map":
+        content = html.Div(
+            [
+                html.Div(
+                    dcc.Graph(
+                        figure=fig_observation_map_slider(
+                            df=df,
+                            fire_start=bio_data["fire_start"]
+                        )
+                    ),
+                    className="map-graph-wrapper"
+                )
+            ]
+        )
+        toggle_style = {"display": "none"}
+    
+    elif selected_plot == "description_analysis":
+        content = html.Div(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5("Top Bigrams in Observation Descriptions", className="mb-3"),
+
+                                dash_table.DataTable(
+                                    data=bigram_table.to_dict("records"),
+                                    columns=[
+                                        {"name": col, "id": col}
+                                        for col in bigram_table.columns
+                                    ],
+                                    style_table={"overflowX": "auto"},
+                                    style_cell={
+                                        "textAlign": "left",
+                                        "padding": "8px",
+                                        "fontFamily": "Arial",
+                                        "fontSize": "13px",
+                                        "whiteSpace": "normal",
+                                    },
+                                    style_header={
+                                        "fontWeight": "bold",
+                                        "backgroundColor": "#f8f9fa",
+                                        "border": "1px solid black",
+                                    },
+                                    style_data={
+                                        "border": "1px solid #ddd",
+                                    },
+                                ),
+
+                                html.P(
+                                    "Descriptions are available for only a subset of observations, so this view is exploratory.",
+                                    className="mt-3 text-muted",
+                                ),
+                            ],
+                            width=3,
+                        ),
+
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    dcc.Graph(
+                                        figure=fig_description_counts_total(df),
+                                        config={"displayModeBar": False},
+                                    ),
+                                    className="mb-4",
+                                ),
+                                html.Div(
+                                    dcc.Graph(
+                                        figure=fig_description_counts_time(
+                                            df,
+                                            bio_data["fire_date_str"]
+                                        ),
+                                        config={"displayModeBar": False},
+                                    )
+                                ),
+                            ],
+                            width=9,
+                        ),
+                    ],
+                    className="g-4",
+                )
             ]
         )
         toggle_style = {"display": "none"}
