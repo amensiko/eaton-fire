@@ -1,0 +1,361 @@
+date,station,label,pm25,interpolated
+2025-01-01,Glendora,E: hourly,11.333333333333334,False
+2025-01-02,Glendora,E: hourly,5.329166666666667,False
+2025-01-03,Glendora,E: hourly,15.291666666666666,False
+2025-01-04,Glendora,E: hourly,26.8125,False
+2025-01-05,Glendora,E: hourly,3.1791666666666667,False
+2025-01-06,Glendora,E: hourly,5.470833333333334,False
+2025-01-07,Glendora,E: hourly,4.6000000000000005,False
+2025-01-08,Glendora,E: hourly,9.58,False
+2025-01-09,Glendora,E: hourly,28.391666666666666,False
+2025-01-10,Glendora,E: hourly,29.90833333333333,False
+2025-01-11,Glendora,E: hourly,19.695833333333333,False
+2025-01-12,Glendora,E: hourly,1.1041666666666667,False
+2025-01-13,Glendora,E: hourly,0.08333333333333333,False
+2025-01-14,Glendora,E: hourly,3.6458333333333335,False
+2025-01-15,Glendora,E: hourly,2.4375,False
+2025-01-16,Glendora,E: hourly,4.204166666666667,False
+2025-01-17,Glendora,E: hourly,8.2875,False
+2025-01-18,Glendora,E: hourly,12.258333333333333,False
+2025-01-19,Glendora,E: hourly,15.9,False
+2025-01-20,Glendora,E: hourly,7.704166666666667,False
+2025-01-21,Glendora,E: hourly,1.4291666666666665,False
+2025-01-22,Glendora,E: hourly,1.580952380952381,False
+2025-01-23,Glendora,E: hourly,0.7125,False
+2025-01-24,Glendora,E: hourly,1.5625,False
+2025-01-25,Glendora,E: hourly,5.754166666666666,False
+2025-01-26,Glendora,E: hourly,1.6416666666666666,False
+2025-01-27,Glendora,E: hourly,2.4,False
+2025-01-28,Glendora,E: hourly,8.016666666666667,False
+2025-01-29,Glendora,E: hourly,8.858333333333333,False
+2025-01-30,Glendora,E: hourly,11.9625,False
+2025-01-31,Glendora,E: hourly,11.054166666666667,False
+2025-02-01,Glendora,E: hourly,15.079166666666666,False
+2025-02-02,Glendora,E: hourly,24.40833333333333,False
+2025-02-03,Glendora,E: hourly,15.4375,False
+2025-02-04,Glendora,E: hourly,9.533333333333333,False
+2025-02-05,Glendora,E: hourly,4.1000000000000005,False
+2025-02-06,Glendora,E: hourly,5.570833333333333,False
+2025-02-07,Glendora,E: hourly,2.1166666666666667,False
+2025-02-08,Glendora,E: hourly,6.920833333333333,False
+2025-02-09,Glendora,E: hourly,6.091666666666666,False
+2025-02-10,Glendora,E: hourly,5.516666666666667,False
+2025-02-11,Glendora,E: hourly,5.695833333333333,False
+2025-02-12,Glendora,E: hourly,4.266666666666667,False
+2025-02-13,Glendora,E: hourly,0.9333333333333333,False
+2025-02-14,Glendora,E: hourly,5.595833333333334,False
+2025-02-15,Glendora,E: hourly,5.4875,False
+2025-02-16,Glendora,E: hourly,4.491666666666666,False
+2025-02-17,Glendora,E: hourly,7.795833333333333,False
+2025-02-18,Glendora,E: hourly,9.5,False
+2025-02-19,Glendora,E: hourly,7.608333333333333,False
+2025-02-20,Glendora,E: hourly,6.883333333333333,False
+2025-02-21,Glendora,E: hourly,1.5583333333333333,False
+2025-02-22,Glendora,E: hourly,2.5833333333333335,False
+2025-02-23,Glendora,E: hourly,6.033333333333334,False
+2025-02-24,Glendora,E: hourly,10.0875,False
+2025-02-25,Glendora,E: hourly,8.737499999999999,False
+2025-02-26,Glendora,E: hourly,6.2749999999999995,False
+2025-02-27,Glendora,E: hourly,0.016666666666666663,False
+2025-02-28,Glendora,E: hourly,3.775,False
+2025-03-01,Glendora,E: hourly,8.516666666666666,False
+2025-03-02,Glendora,E: hourly,4.058333333333334,False
+2025-03-03,Glendora,E: hourly,3.0083333333333333,False
+2025-03-04,Glendora,E: hourly,5.825,False
+2025-03-05,Glendora,E: hourly,7.370833333333334,False
+2025-03-06,Glendora,E: hourly,1.5875000000000001,False
+2025-03-07,Glendora,E: hourly,3.475,False
+2025-03-08,Glendora,E: hourly,4.45,False
+2025-03-09,Glendora,E: hourly,1.9541666666666666,False
+2025-03-10,Glendora,E: hourly,1.9833333333333334,False
+2025-03-11,Glendora,E: hourly,0.08260869565217395,False
+2025-03-12,Glendora,E: hourly,0.8083333333333332,False
+2025-03-13,Glendora,E: hourly,1.6583333333333332,False
+2025-03-14,Glendora,E: hourly,2.9954545454545456,False
+2025-03-15,Glendora,E: hourly,6.5,False
+2025-03-16,Glendora,E: hourly,9.625,False
+2025-03-17,Glendora,E: hourly,9.5375,False
+2025-03-18,Glendora,E: hourly,3.5041666666666664,False
+2025-03-19,Glendora,E: hourly,2.1666666666666665,False
+2025-03-20,Glendora,E: hourly,4.716666666666667,False
+2025-03-21,Glendora,E: hourly,6.575,False
+2025-03-22,Glendora,E: hourly,8.358333333333333,False
+2025-03-23,Glendora,E: hourly,14.25,False
+2025-03-24,Glendora,E: hourly,9.25,False
+2025-03-25,Glendora,E: hourly,12.58095238095238,False
+2025-03-26,Glendora,E: hourly,12.995833333333332,False
+2025-03-27,Glendora,E: hourly,3.9291666666666667,False
+2025-03-28,Glendora,E: hourly,5.329166666666667,False
+2025-03-29,Glendora,E: hourly,6.3,False
+2025-03-30,Glendora,E: hourly,5.2749999999999995,False
+2025-03-31,Glendora,E: hourly,2.6791666666666667,False
+2025-01-01,Los Angeles-North Main Street,SSW: daily,32.9,False
+2025-01-02,Los Angeles-North Main Street,SSW: daily,19.7,False
+2025-01-03,Los Angeles-North Main Street,SSW: daily,28.3,False
+2025-01-04,Los Angeles-North Main Street,SSW: daily,33.4,False
+2025-01-05,Los Angeles-North Main Street,SSW: daily,9.7,False
+2025-01-06,Los Angeles-North Main Street,SSW: daily,7.9,False
+2025-01-07,Los Angeles-North Main Street,SSW: daily,15.85,False
+2025-01-08,Los Angeles-North Main Street,SSW: daily,99.6,False
+2025-01-09,Los Angeles-North Main Street,SSW: daily,64.6,False
+2025-01-10,Los Angeles-North Main Street,SSW: daily,29.5,False
+2025-01-11,Los Angeles-North Main Street,SSW: daily,24.6,False
+2025-01-12,Los Angeles-North Main Street,SSW: daily,9.4,False
+2025-01-13,Los Angeles-North Main Street,SSW: daily,9.2,False
+2025-01-14,Los Angeles-North Main Street,SSW: daily,8.3,False
+2025-01-15,Los Angeles-North Main Street,SSW: daily,8.6,False
+2025-01-16,Los Angeles-North Main Street,SSW: daily,9.2,False
+2025-01-17,Los Angeles-North Main Street,SSW: daily,13.2,False
+2025-01-18,Los Angeles-North Main Street,SSW: daily,20.7,False
+2025-01-19,Los Angeles-North Main Street,SSW: daily,22.9,False
+2025-01-20,Los Angeles-North Main Street,SSW: daily,13.0,False
+2025-01-21,Los Angeles-North Main Street,SSW: daily,7.1,False
+2025-01-22,Los Angeles-North Main Street,SSW: daily,7.95,True
+2025-01-23,Los Angeles-North Main Street,SSW: daily,8.8,False
+2025-01-24,Los Angeles-North Main Street,SSW: daily,6.8,False
+2025-01-25,Los Angeles-North Main Street,SSW: daily,11.5,False
+2025-01-26,Los Angeles-North Main Street,SSW: daily,4.7,False
+2025-01-27,Los Angeles-North Main Street,SSW: daily,5.6,False
+2025-01-28,Los Angeles-North Main Street,SSW: daily,12.5,False
+2025-01-29,Los Angeles-North Main Street,SSW: daily,12.6,False
+2025-01-30,Los Angeles-North Main Street,SSW: daily,16.0,False
+2025-01-31,Los Angeles-North Main Street,SSW: daily,17.549999999999997,False
+2025-02-01,Los Angeles-North Main Street,SSW: daily,18.5,False
+2025-02-02,Los Angeles-North Main Street,SSW: daily,36.2,False
+2025-02-03,Los Angeles-North Main Street,SSW: daily,26.1,False
+2025-02-04,Los Angeles-North Main Street,SSW: daily,7.7,False
+2025-02-05,Los Angeles-North Main Street,SSW: daily,6.8,False
+2025-02-06,Los Angeles-North Main Street,SSW: daily,7.633333333333334,True
+2025-02-07,Los Angeles-North Main Street,SSW: daily,8.466666666666667,True
+2025-02-08,Los Angeles-North Main Street,SSW: daily,9.3,False
+2025-02-09,Los Angeles-North Main Street,SSW: daily,8.3,False
+2025-02-10,Los Angeles-North Main Street,SSW: daily,10.1,False
+2025-02-11,Los Angeles-North Main Street,SSW: daily,9.575,True
+2025-02-12,Los Angeles-North Main Street,SSW: daily,9.049999999999999,True
+2025-02-13,Los Angeles-North Main Street,SSW: daily,8.525,True
+2025-02-14,Los Angeles-North Main Street,SSW: daily,8.0,False
+2025-02-15,Los Angeles-North Main Street,SSW: daily,9.7,False
+2025-02-16,Los Angeles-North Main Street,SSW: daily,7.0,False
+2025-02-17,Los Angeles-North Main Street,SSW: daily,13.2,False
+2025-02-18,Los Angeles-North Main Street,SSW: daily,13.1,False
+2025-02-19,Los Angeles-North Main Street,SSW: daily,17.2,False
+2025-02-20,Los Angeles-North Main Street,SSW: daily,16.3,True
+2025-02-21,Los Angeles-North Main Street,SSW: daily,15.399999999999999,True
+2025-02-22,Los Angeles-North Main Street,SSW: daily,14.5,True
+2025-02-23,Los Angeles-North Main Street,SSW: daily,13.6,True
+2025-02-24,Los Angeles-North Main Street,SSW: daily,12.7,False
+2025-02-25,Los Angeles-North Main Street,SSW: daily,11.533333333333333,True
+2025-02-26,Los Angeles-North Main Street,SSW: daily,10.366666666666665,True
+2025-02-27,Los Angeles-North Main Street,SSW: daily,9.2,False
+2025-02-28,Los Angeles-North Main Street,SSW: daily,8.9,False
+2025-03-01,Los Angeles-North Main Street,SSW: daily,9.1,False
+2025-03-02,Los Angeles-North Main Street,SSW: daily,6.1,False
+2025-03-03,Los Angeles-North Main Street,SSW: daily,5.4,False
+2025-03-04,Los Angeles-North Main Street,SSW: daily,9.7,False
+2025-03-05,Los Angeles-North Main Street,SSW: daily,13.3,False
+2025-03-06,Los Angeles-North Main Street,SSW: daily,3.6,False
+2025-03-07,Los Angeles-North Main Street,SSW: daily,5.0,False
+2025-03-08,Los Angeles-North Main Street,SSW: daily,9.5,False
+2025-03-09,Los Angeles-North Main Street,SSW: daily,10.8,False
+2025-03-10,Los Angeles-North Main Street,SSW: daily,7.4,False
+2025-03-11,Los Angeles-North Main Street,SSW: daily,4.0,False
+2025-03-12,Los Angeles-North Main Street,SSW: daily,3.5,False
+2025-03-13,Los Angeles-North Main Street,SSW: daily,2.5,False
+2025-03-14,Los Angeles-North Main Street,SSW: daily,3.9,False
+2025-03-15,Los Angeles-North Main Street,SSW: daily,6.8,False
+2025-03-16,Los Angeles-North Main Street,SSW: daily,12.2,False
+2025-03-17,Los Angeles-North Main Street,SSW: daily,13.0,False
+2025-03-18,Los Angeles-North Main Street,SSW: daily,4.4,False
+2025-03-19,Los Angeles-North Main Street,SSW: daily,5.3,False
+2025-03-20,Los Angeles-North Main Street,SSW: daily,8.0,False
+2025-03-21,Los Angeles-North Main Street,SSW: daily,10.85,True
+2025-03-22,Los Angeles-North Main Street,SSW: daily,13.7,False
+2025-03-23,Los Angeles-North Main Street,SSW: daily,14.9,False
+2025-03-24,Los Angeles-North Main Street,SSW: daily,13.3,False
+2025-03-25,Los Angeles-North Main Street,SSW: daily,12.8,False
+2025-03-26,Los Angeles-North Main Street,SSW: daily,9.25,False
+2025-03-27,Los Angeles-North Main Street,SSW: daily,4.7,False
+2025-03-28,Los Angeles-North Main Street,SSW: daily,7.8,False
+2025-03-29,Los Angeles-North Main Street,SSW: daily,9.0,False
+2025-03-30,Los Angeles-North Main Street,SSW: daily,5.9,False
+2025-03-31,Los Angeles-North Main Street,SSW: daily,3.5,False
+2025-01-01,North Hollywood (NOHO),W: hourly,50.1,False
+2025-01-02,North Hollywood (NOHO),W: hourly,18.254166666666666,False
+2025-01-03,North Hollywood (NOHO),W: hourly,21.391666666666666,False
+2025-01-04,North Hollywood (NOHO),W: hourly,31.34166666666667,False
+2025-01-05,North Hollywood (NOHO),W: hourly,11.641666666666666,False
+2025-01-06,North Hollywood (NOHO),W: hourly,9.304166666666667,False
+2025-01-07,North Hollywood (NOHO),W: hourly,13.273913043478261,False
+2025-01-08,North Hollywood (NOHO),W: hourly,3.4791666666666665,False
+2025-01-09,North Hollywood (NOHO),W: hourly,49.48333333333333,False
+2025-01-10,North Hollywood (NOHO),W: hourly,24.991666666666664,False
+2025-01-11,North Hollywood (NOHO),W: hourly,15.529166666666667,False
+2025-01-12,North Hollywood (NOHO),W: hourly,7.129166666666666,False
+2025-01-13,North Hollywood (NOHO),W: hourly,5.695833333333333,False
+2025-01-14,North Hollywood (NOHO),W: hourly,10.316666666666666,False
+2025-01-15,North Hollywood (NOHO),W: hourly,10.981818181818182,False
+2025-01-16,North Hollywood (NOHO),W: hourly,11.3125,False
+2025-01-17,North Hollywood (NOHO),W: hourly,12.483333333333334,False
+2025-01-18,North Hollywood (NOHO),W: hourly,15.970833333333333,False
+2025-01-19,North Hollywood (NOHO),W: hourly,21.3875,False
+2025-01-20,North Hollywood (NOHO),W: hourly,11.941666666666668,False
+2025-01-21,North Hollywood (NOHO),W: hourly,4.541666666666667,False
+2025-01-22,North Hollywood (NOHO),W: hourly,8.091666666666667,False
+2025-01-23,North Hollywood (NOHO),W: hourly,6.458333333333333,False
+2025-01-24,North Hollywood (NOHO),W: hourly,9.170833333333333,False
+2025-01-25,North Hollywood (NOHO),W: hourly,13.137500000000001,False
+2025-01-26,North Hollywood (NOHO),W: hourly,6.379166666666666,False
+2025-01-27,North Hollywood (NOHO),W: hourly,5.3625,False
+2025-01-28,North Hollywood (NOHO),W: hourly,11.966666666666667,False
+2025-01-29,North Hollywood (NOHO),W: hourly,11.920833333333334,False
+2025-01-30,North Hollywood (NOHO),W: hourly,14.416666666666666,False
+2025-01-31,North Hollywood (NOHO),W: hourly,16.829166666666666,False
+2025-02-01,North Hollywood (NOHO),W: hourly,17.120833333333334,False
+2025-02-02,North Hollywood (NOHO),W: hourly,30.925,False
+2025-02-03,North Hollywood (NOHO),W: hourly,21.224999999999998,False
+2025-02-04,North Hollywood (NOHO),W: hourly,8.179166666666667,False
+2025-02-05,North Hollywood (NOHO),W: hourly,4.908333333333333,False
+2025-02-06,North Hollywood (NOHO),W: hourly,7.554166666666667,False
+2025-02-07,North Hollywood (NOHO),W: hourly,6.533333333333333,False
+2025-02-08,North Hollywood (NOHO),W: hourly,9.383333333333333,False
+2025-02-09,North Hollywood (NOHO),W: hourly,11.275,False
+2025-02-10,North Hollywood (NOHO),W: hourly,11.195833333333333,False
+2025-02-11,North Hollywood (NOHO),W: hourly,8.638095238095238,False
+2025-02-12,North Hollywood (NOHO),W: hourly,7.029166666666666,False
+2025-02-13,North Hollywood (NOHO),W: hourly,4.1695652173913045,False
+2025-02-14,North Hollywood (NOHO),W: hourly,5.129166666666666,False
+2025-02-15,North Hollywood (NOHO),W: hourly,11.008333333333333,False
+2025-02-16,North Hollywood (NOHO),W: hourly,10.833333333333334,False
+2025-02-17,North Hollywood (NOHO),W: hourly,16.233333333333334,False
+2025-02-18,North Hollywood (NOHO),W: hourly,13.525,False
+2025-02-19,North Hollywood (NOHO),W: hourly,14.737499999999999,False
+2025-02-20,North Hollywood (NOHO),W: hourly,14.8125,False
+2025-02-21,North Hollywood (NOHO),W: hourly,12.654166666666667,False
+2025-02-22,North Hollywood (NOHO),W: hourly,9.829166666666667,False
+2025-02-23,North Hollywood (NOHO),W: hourly,12.317391304347826,False
+2025-02-24,North Hollywood (NOHO),W: hourly,14.362499999999999,False
+2025-02-25,North Hollywood (NOHO),W: hourly,13.191666666666668,False
+2025-02-26,North Hollywood (NOHO),W: hourly,13.762500000000001,False
+2025-02-27,North Hollywood (NOHO),W: hourly,7.879166666666666,False
+2025-02-28,North Hollywood (NOHO),W: hourly,8.700000000000001,False
+2025-03-01,North Hollywood (NOHO),W: hourly,9.75,False
+2025-03-02,North Hollywood (NOHO),W: hourly,5.925000000000001,False
+2025-03-03,North Hollywood (NOHO),W: hourly,4.420833333333333,False
+2025-03-04,North Hollywood (NOHO),W: hourly,9.216666666666667,False
+2025-03-05,North Hollywood (NOHO),W: hourly,10.095833333333333,False
+2025-03-06,North Hollywood (NOHO),W: hourly,4.279166666666667,False
+2025-03-07,North Hollywood (NOHO),W: hourly,5.472727272727273,False
+2025-03-08,North Hollywood (NOHO),W: hourly,10.595833333333333,False
+2025-03-09,North Hollywood (NOHO),W: hourly,11.766666666666666,False
+2025-03-10,North Hollywood (NOHO),W: hourly,10.479166666666666,False
+2025-03-11,North Hollywood (NOHO),W: hourly,6.020833333333333,False
+2025-03-12,North Hollywood (NOHO),W: hourly,4.929166666666666,False
+2025-03-13,North Hollywood (NOHO),W: hourly,2.5875,False
+2025-03-14,North Hollywood (NOHO),W: hourly,5.45,False
+2025-03-15,North Hollywood (NOHO),W: hourly,7.741666666666667,False
+2025-03-16,North Hollywood (NOHO),W: hourly,10.691666666666668,False
+2025-03-17,North Hollywood (NOHO),W: hourly,12.054166666666667,False
+2025-03-18,North Hollywood (NOHO),W: hourly,4.590909090909091,False
+2025-03-19,North Hollywood (NOHO),W: hourly,6.070833333333333,False
+2025-03-20,North Hollywood (NOHO),W: hourly,9.4125,False
+2025-03-21,North Hollywood (NOHO),W: hourly,10.029166666666667,False
+2025-03-22,North Hollywood (NOHO),W: hourly,11.820833333333333,False
+2025-03-23,North Hollywood (NOHO),W: hourly,14.166666666666666,False
+2025-03-24,North Hollywood (NOHO),W: hourly,9.9,False
+2025-03-25,North Hollywood (NOHO),W: hourly,11.345833333333333,False
+2025-03-26,North Hollywood (NOHO),W: hourly,10.458333333333334,False
+2025-03-27,North Hollywood (NOHO),W: hourly,7.9624999999999995,False
+2025-03-28,North Hollywood (NOHO),W: hourly,6.779166666666668,False
+2025-03-29,North Hollywood (NOHO),W: hourly,6.9125000000000005,False
+2025-03-30,North Hollywood (NOHO),W: hourly,4.608333333333333,False
+2025-03-31,North Hollywood (NOHO),W: hourly,4.541666666666667,False
+2025-01-01,Pasadena,S: 3-day,21.6,False
+2025-01-02,Pasadena,S: 3-day,26.933333333333334,True
+2025-01-03,Pasadena,S: 3-day,32.266666666666666,True
+2025-01-04,Pasadena,S: 3-day,37.6,False
+2025-01-05,Pasadena,S: 3-day,46.43333333333333,True
+2025-01-06,Pasadena,S: 3-day,55.266666666666666,True
+2025-01-07,Pasadena,S: 3-day,64.1,False
+2025-01-08,Pasadena,S: 3-day,66.89999999999999,True
+2025-01-09,Pasadena,S: 3-day,69.7,True
+2025-01-10,Pasadena,S: 3-day,72.5,False
+2025-01-11,Pasadena,S: 3-day,51.43333333333333,True
+2025-01-12,Pasadena,S: 3-day,30.366666666666667,True
+2025-01-13,Pasadena,S: 3-day,9.3,False
+2025-01-14,Pasadena,S: 3-day,9.5,True
+2025-01-15,Pasadena,S: 3-day,9.700000000000001,True
+2025-01-16,Pasadena,S: 3-day,9.9,False
+2025-01-17,Pasadena,S: 3-day,13.866666666666667,True
+2025-01-18,Pasadena,S: 3-day,17.833333333333336,True
+2025-01-19,Pasadena,S: 3-day,21.8,False
+2025-01-20,Pasadena,S: 3-day,17.1,True
+2025-01-21,Pasadena,S: 3-day,12.4,True
+2025-01-22,Pasadena,S: 3-day,7.7,False
+2025-01-23,Pasadena,S: 3-day,7.6000000000000005,True
+2025-01-24,Pasadena,S: 3-day,7.5,True
+2025-01-25,Pasadena,S: 3-day,7.4,False
+2025-01-26,Pasadena,S: 3-day,8.8,True
+2025-01-27,Pasadena,S: 3-day,10.2,True
+2025-01-28,Pasadena,S: 3-day,11.6,False
+2025-01-29,Pasadena,S: 3-day,13.033333333333333,True
+2025-01-30,Pasadena,S: 3-day,14.466666666666667,True
+2025-01-31,Pasadena,S: 3-day,15.9,False
+2025-02-01,Pasadena,S: 3-day,19.0,True
+2025-02-02,Pasadena,S: 3-day,22.1,True
+2025-02-03,Pasadena,S: 3-day,25.2,False
+2025-02-04,Pasadena,S: 3-day,18.633333333333333,True
+2025-02-05,Pasadena,S: 3-day,12.066666666666666,True
+2025-02-06,Pasadena,S: 3-day,5.5,False
+2025-02-07,Pasadena,S: 3-day,5.5,True
+2025-02-08,Pasadena,S: 3-day,5.5,True
+2025-02-09,Pasadena,S: 3-day,5.5,True
+2025-02-10,Pasadena,S: 3-day,5.5,True
+2025-02-11,Pasadena,S: 3-day,5.5,True
+2025-02-12,Pasadena,S: 3-day,5.5,False
+2025-02-13,Pasadena,S: 3-day,6.133333333333334,True
+2025-02-14,Pasadena,S: 3-day,6.766666666666667,True
+2025-02-15,Pasadena,S: 3-day,7.4,False
+2025-02-16,Pasadena,S: 3-day,8.4,True
+2025-02-17,Pasadena,S: 3-day,9.4,True
+2025-02-18,Pasadena,S: 3-day,10.4,False
+2025-02-19,Pasadena,S: 3-day,9.1,True
+2025-02-20,Pasadena,S: 3-day,7.8,True
+2025-02-21,Pasadena,S: 3-day,6.5,False
+2025-02-22,Pasadena,S: 3-day,7.8999999999999995,True
+2025-02-23,Pasadena,S: 3-day,9.299999999999999,True
+2025-02-24,Pasadena,S: 3-day,10.7,False
+2025-02-25,Pasadena,S: 3-day,8.9,True
+2025-02-26,Pasadena,S: 3-day,7.1,True
+2025-02-27,Pasadena,S: 3-day,5.3,False
+2025-02-28,Pasadena,S: 3-day,5.366666666666666,True
+2025-03-01,Pasadena,S: 3-day,5.433333333333334,True
+2025-03-02,Pasadena,S: 3-day,5.5,False
+2025-03-03,Pasadena,S: 3-day,5.6,True
+2025-03-04,Pasadena,S: 3-day,5.7,True
+2025-03-05,Pasadena,S: 3-day,5.8,True
+2025-03-06,Pasadena,S: 3-day,5.8999999999999995,True
+2025-03-07,Pasadena,S: 3-day,6.0,True
+2025-03-08,Pasadena,S: 3-day,6.1,False
+2025-03-09,Pasadena,S: 3-day,5.033333333333333,True
+2025-03-10,Pasadena,S: 3-day,3.9666666666666663,True
+2025-03-11,Pasadena,S: 3-day,2.9,False
+2025-03-12,Pasadena,S: 3-day,3.1666666666666665,True
+2025-03-13,Pasadena,S: 3-day,3.4333333333333336,True
+2025-03-14,Pasadena,S: 3-day,3.7,False
+2025-03-15,Pasadena,S: 3-day,6.133333333333334,True
+2025-03-16,Pasadena,S: 3-day,8.566666666666666,True
+2025-03-17,Pasadena,S: 3-day,11.0,False
+2025-03-18,Pasadena,S: 3-day,9.4,True
+2025-03-19,Pasadena,S: 3-day,7.8,True
+2025-03-20,Pasadena,S: 3-day,6.2,False
+2025-03-21,Pasadena,S: 3-day,8.366666666666667,True
+2025-03-22,Pasadena,S: 3-day,10.533333333333333,True
+2025-03-23,Pasadena,S: 3-day,12.7,False
+2025-03-24,Pasadena,S: 3-day,12.933333333333334,True
+2025-03-25,Pasadena,S: 3-day,13.166666666666666,True
+2025-03-26,Pasadena,S: 3-day,13.4,False
+2025-03-27,Pasadena,S: 3-day,11.433333333333334,True
+2025-03-28,Pasadena,S: 3-day,9.466666666666667,True
+2025-03-29,Pasadena,S: 3-day,7.5,False
+2025-03-30,Pasadena,S: 3-day,7.5,True
+2025-03-31,Pasadena,S: 3-day,7.5,True

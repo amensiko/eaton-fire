@@ -93,7 +93,7 @@ def main():
     #select station
     station = stations[2]
 
-    cross_correlation(var1="ppt", #Select x (driver) variable
+    cross_correlation(var1="tmean", #Select x (driver) variable
                       var2="pm25", #Select y (lagged) variable
                       station=None #select station for PM25 (or not - will average)
                       )
