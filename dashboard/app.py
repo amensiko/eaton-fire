@@ -17,20 +17,41 @@ from helpers.biodiversity import (
     fig_description_counts_total,
 )
 
+from helpers.news import (
+    load_and_clean_news_data,
+    daily_article_counts,
+    top_outlets_counts,
+    monthly_text_extraction_success,
+    article_size_hist,
+    monthly_news_coverage_with_quality,
+)
+
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
 
 app = Dash(__name__, external_stylesheets=[BRITE])
+
+# Biodiversity 
 bio_data = load_biodiversity_data()
 df = clean_data(bio_data['df'])
 df_effort, period_summary = period_counts(df)
 period_summary["Observations Per User"] = period_summary["Observations Per User"].round(2)
 period_summary["Share of Total Observations"] = period_summary["Share of Total Observations"].round(1)
 period_summary["Share of Total Users"] = period_summary["Share of Total Users"].round(1)
-
 df_text = df[df["has_description"]].copy()
 bigram_table = make_clean_bigram_table(df_text, top_n=20)
 bigram_table.columns = ["Top bigram", "Count"]
-# bigram_table
+
+# News
+fixed_df, news_df, report_df = load_and_clean_news_data()
+top_outlets_table = (
+    report_df["media_name"]
+    .fillna("Unknown")
+    .value_counts()
+    .head(15)
+    .reset_index()
+)
+
+top_outlets_table.columns = ["Outlet", "Number of articles"]
 
 app.layout = dbc.Container(
     [
@@ -120,7 +141,42 @@ app.layout = dbc.Container(
                                     html.Div(
                                         [
                                             html.H3("News Reports", className="mb-3"),
-                                            html.P("Put your article topic analysis, environmental themes, and news summaries here."),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        dcc.Dropdown(
+                                                            id="news-plot-dropdown",
+                                                            options=[
+                                                                {"label": "Overview", "value": "news_overview"},
+                                                                {"label": "Topic Modelling", "value": "news_topics"},
+                                                                {"label": "LLM Analysis", "value": "news_llm"},
+                                                            ],
+                                                            value="news_overview",
+                                                            clearable=False,
+                                                        ),
+                                                        width=5,
+                                                    ),
+                                                    dbc.Col(
+                                                        html.Div(
+                                                            dbc.Checklist(
+                                                                id="show-news-quality-toggle",
+                                                                options=[{"label": "Show extraction success (right axis)", "value": "show_quality"}],
+                                                                value=["show_quality"],
+                                                                switch=True,
+                                                                className="mb-0 big-toggle",
+                                                            ),
+                                                            id="show-news-quality-wrapper",
+                                                            style={"display": "flex", "justifyContent": "flex-end"},
+                                                        ),
+                                                        width=7,
+                                                    ),
+                                                ],
+                                                className="mb-4",
+                                                align="center",
+                                            ),
+
+                                            html.Div(id="news-plot-container"),
                                         ],
                                         className="p-4"
                                     )
@@ -299,6 +355,75 @@ def update_bio_plot_container(selected_plot, toggle_values):
         toggle_style = {"display": "none"}
 
     return content, toggle_style
+
+@app.callback(
+    Output("news-plot-container", "children"),
+    Output("show-news-quality-wrapper", "style"),
+    Input("news-plot-dropdown", "value"),
+    Input("show-news-quality-toggle", "value"),
+)
+def update_news_plot_container(selected_plot, toggle_values):
+    show_quality = toggle_values is not None and "show_quality" in toggle_values
+
+    if selected_plot == "news_overview":
+        content = html.Div(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5("Top 15 outlets", className="mb-3"),
+                                dash_table.DataTable(
+                                    data=top_outlets_table.to_dict("records"),
+                                    columns=[
+                                        {"name": col, "id": col}
+                                        for col in top_outlets_table.columns
+                                    ],
+                                    style_table={"overflowX": "auto"},
+                                    style_cell={
+                                        "textAlign": "left",
+                                        "padding": "8px",
+                                        "fontFamily": "Arial",
+                                        "fontSize": "13px",
+                                        "whiteSpace": "normal",
+                                    },
+                                    style_header={
+                                        "fontWeight": "bold",
+                                        "backgroundColor": "#f8f9fa",
+                                        "border": "1px solid black",
+                                    },
+                                    style_data={
+                                        "border": "1px solid #ddd",
+                                    },
+                                ),
+                            ],
+                            width=3,
+                        ),
+
+                        dbc.Col(
+                            dcc.Graph(
+                                figure=monthly_news_coverage_with_quality(
+                                    report_df,
+                                    show_quality=show_quality,
+                                ),
+                                config={"displayModeBar": False},
+                            ),
+                            width=9,
+                        ),
+                    ],
+                    className="g-4",
+                ),
+            ]
+        )
+
+        toggle_style = {"display": "flex", "justifyContent": "flex-end"}
+
+    else:
+        content = html.Div("No plot selected.")
+        toggle_style = {"display": "none"}
+
+    return content, toggle_style
+
 
 if __name__ == "__main__":
     app.run(debug=True)
