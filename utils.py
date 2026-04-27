@@ -39,6 +39,27 @@ def load_aq(station=None):
 
     return df
 
+def load_biodiversity():
+
+    bio_daily = r"biodiversity_data/data/biodiversity_daily_counts_cr.csv"
+    df = pd.read_csv(bio_daily)
+    
+    
+    #Convert to datetime
+    df["date"] = pd.to_datetime(df["day"], format="%Y-%m-%d")
+
+    df = df.drop(columns=["day"])
+
+
+    return df
+
+def load_news():
+    news_daily = r"news_data/data/news_daily_counts_cr.csv"
+    df = pd.read_csv(news_daily)
+    #Convert to datetime
+    df["date"] = pd.to_datetime(df["publish_date"], format="%Y-%m-%d")
+    df = df.drop(columns=["publish_date"])
+
 
 def merge_sources(station=None):
     """
@@ -54,6 +75,9 @@ def merge_sources(station=None):
     #load pm25
     pm25_data = load_aq(station) #load
     to_merge.append(pm25_data)
+
+    bio_data = load_biodiversity()
+    to_merge.append(bio_data)
     
     merged = reduce(lambda left, right: left.merge(right, on="date"), to_merge)
 
@@ -61,11 +85,16 @@ def merge_sources(station=None):
 
 def load_variable_lookup():
     var_yaml = "variables.yaml"
+    var_lookup_flat = {}
     
     with open(var_yaml, 'r') as f:
         var_lookup = yaml.safe_load(f)
-    
-    return var_lookup
 
-#DateString can be kept, and year/month/day columns dropped for wx data.
+    for var_type, dict in var_lookup['variables'].items():
+        for key, val in dict.items():
+            var_lookup_flat[key] = val
+    
+    return var_lookup_flat
+
+#DateString can be kept, and year/month/day columns dropped for bio data.
 

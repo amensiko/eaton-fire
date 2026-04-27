@@ -48,12 +48,18 @@ def plot_correlations(cross_corr, var1, var2):
                             arrayminus=correlations - confidence_ints[:, 0])
                             ))
     
+    var_lookup = load_variable_lookup()
+    
+    #Get Variable Labels
+    var1_label = var_lookup[var1]
+    var2_label = var_lookup[var2]
+    
 
-    fig.update_layout(title=f"Cross-Correlation Plot\n{var2}~{var1}")
+    fig.update_layout(title=f"Cross-Correlation Plot: \n{var1_label} & {var2_label}")
     fig.update_yaxes(title_text = "Correlation")
     fig.update_xaxes(title_text = "Lag (days)")
 
-    fig.show()
+    fig.write_image(f'figures/CCF_{var2}_{var1}.png')
 
 def cross_correlation(var1, var2, station=None):
     """ 
@@ -93,7 +99,7 @@ def main():
     #select station
     station = stations[2]
 
-    cross_correlation(var1="tmean", #Select x (driver) variable
+    cross_correlation(var1="ppt", #Select x (driver) variable
                       var2="pm25", #Select y (lagged) variable
                       station=None #select station for PM25 (or not - will average)
                       )
