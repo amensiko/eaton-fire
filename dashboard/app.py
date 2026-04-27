@@ -108,7 +108,8 @@ app.layout = dbc.Container(
                                                             dbc.CardBody([
                                                                 html.H5("Air Quality"),
                                                                 html.P("Explore PM2.5 monitoring stations, historical comparisons, and focal station time series.")
-                                                            ])
+                                                            ]),
+                                                            className="welcome-info-card",
                                                         ),
                                                         width=4,
                                                     ),
@@ -117,7 +118,8 @@ app.layout = dbc.Container(
                                                             dbc.CardBody([
                                                                 html.H5("Biodiversity"),
                                                                 html.P("View iNaturalist observations, taxonomic patterns, user effort, maps, and description keywords.")
-                                                            ])
+                                                            ]),
+                                                            className="welcome-info-card",
                                                         ),
                                                         width=4,
                                                     ),
@@ -126,7 +128,8 @@ app.layout = dbc.Container(
                                                             dbc.CardBody([
                                                                 html.H5("Weather"),
                                                                 html.P("Examine weather conditions relevant to fire behavior, smoke transport, and recovery context.")
-                                                            ])
+                                                            ]),
+                                                            className="welcome-info-card",
                                                         ),
                                                         width=4,
                                                     ),
@@ -141,7 +144,8 @@ app.layout = dbc.Container(
                                                             dbc.CardBody([
                                                                 html.H5("News Reports"),
                                                                 html.P("Analyze media coverage, environmental themes, topic models, and LLM-generated summaries.")
-                                                            ])
+                                                            ]),
+                                                            className="welcome-info-card",
                                                         ),
                                                         width=6,
                                                     ),
@@ -150,7 +154,8 @@ app.layout = dbc.Container(
                                                             dbc.CardBody([
                                                                 html.H5("Cross-Correlation"),
                                                                 html.P("Compare patterns across datasets to explore possible relationships between weather, air quality, biodiversity, and news attention.")
-                                                            ])
+                                                            ]),
+                                                            className="welcome-info-card",
                                                         ),
                                                         width=6,
                                                     ),

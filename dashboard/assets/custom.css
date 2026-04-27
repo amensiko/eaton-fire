@@ -94,3 +94,13 @@
     opacity: 0 !important;
     pointer-events: none !important;
 }
+.welcome-info-card {
+    background: #fff3b0;
+    border: 2px solid black;
+    border-radius: 12px;
+    height: 100%;
+}
+
+.welcome-info-card h5 {
+    font-weight: 700;
+}
