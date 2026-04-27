@@ -17,7 +17,7 @@ def add_month_names(df):
 
 
 def load_lookback():
-    loaded = pd.read_csv("data/weather/monthly_lookback.csv")
+    loaded = pd.read_csv("helpers/data/weather/monthly_lookback.csv")
     add_month_names(loaded)
     return loaded
 
@@ -80,7 +80,12 @@ def construct_multipanel_bars(wx_var):
     )
     fig.update_yaxes(title_text=variable_name, row=1, col=1)
 
-    fig.show()
+    fig.update_layout(
+        template="plotly_white",
+        height=450
+    )
+
+    return fig
 
 def construct_multipanel_box(wx_var):
     """
@@ -158,8 +163,13 @@ def construct_multipanel_box(wx_var):
     
     fig.update_layout(title_text=f'{variable_name} Distribution by Month')
     fig.update_yaxes(title_text=variable_name, row=1, col=1)
+
+    fig.update_layout(
+        template="plotly_white",
+        height=450
+    )
     
-    fig.show()
+    return fig
 
 
 

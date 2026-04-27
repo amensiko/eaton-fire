@@ -40,6 +40,7 @@ from helpers.airquality import (
 
 from helpers.CCF import cross_correlation
 from helpers.CCF_utils import load_variable_lookup
+from helpers.weather import construct_multipanel_bars, construct_multipanel_box
 
 
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
@@ -242,6 +243,44 @@ app.layout = dbc.Container(
                                             html.Div(id="airquality-plot-container"),
                                         ],
                                         className="p-4"
+                                    )
+                                ],
+                            ),
+                            dbc.Tab(
+                                label="Weather",
+                                tab_id="weather",
+                                children=[
+                                    html.Div(
+                                        [
+                                            html.H3("Weather", className="mb-3"),
+
+                                            html.P(
+                                                "Select a weather variable to compare monthly trends and antecedent 2024 conditions.",
+                                                className="text-muted",
+                                            ),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        dcc.Dropdown(
+                                                            id="weather-variable-dropdown",
+                                                            options=[
+                                                                {"label": "Precipitation", "value": "ppt"},
+                                                                {"label": "Vapor Pressure Deficit", "value": "vpdmax"},
+                                                                {"label": "Mean Temperature", "value": "tmean"},
+                                                            ],
+                                                            value="ppt",
+                                                            clearable=False,
+                                                        ),
+                                                        width=5,
+                                                    ),
+                                                ],
+                                                className="mb-4",
+                                            ),
+
+                                            html.Div(id="weather-plot-container"),
+                                        ],
+                                        className="p-4",
                                     )
                                 ],
                             ),
@@ -852,6 +891,31 @@ def update_ccf_plot(var1, var2, station_value):
             "justifyContent": "center",
             "width": "100%",
         },
+    )
+
+
+@app.callback(
+    Output("weather-plot-container", "children"),
+    Input("weather-variable-dropdown", "value"),
+)
+def update_weather_plot_container(selected_variable):
+    return html.Div(
+        [
+            html.Div(
+                dcc.Graph(
+                    figure=construct_multipanel_bars(selected_variable),
+                    config={"displayModeBar": False},
+                ),
+                className="mb-4",
+            ),
+
+            html.Div(
+                dcc.Graph(
+                    figure=construct_multipanel_box(selected_variable),
+                    config={"displayModeBar": False},
+                ),
+            ),
+        ]
     )
 
 
