@@ -1,0 +1,17 @@
+variables:
+  Meteorological:
+    ppt: precipitation (mm)
+    vpdmax: Vapor Pressure Deficit (Daily Maximum, hPa)
+    tmean: Mean Temperature (C)
+  Air Quality:
+    pm25: Particulate Matter < 25 µm #Double check units
+  Biodiversity:
+    n_obs: Number of Species Observations
+  News Article:
+    n_articles: Number of News Articles published
+
+aq_stations:
+  - Glendora
+  - Los Angeles-North Main Street
+  - North Hollywood (NOHO)
+  - Pasadena
