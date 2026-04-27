@@ -59,14 +59,16 @@ bigram_table = make_clean_bigram_table(df_text, top_n=20)
 bigram_table.columns = ["Top bigram", "Count"]
 
 # News
-fixed_df, news_df, report_df = load_and_clean_news_data()
-top_outlets_table = (
-    report_df["media_name"]
-    .fillna("Unknown")
-    .value_counts()
-    .head(15)
-    .reset_index()
-)
+# fixed_df, news_df, report_df = load_and_clean_news_data()
+# top_outlets_table = (
+#     report_df["media_name"]
+#     .fillna("Unknown")
+#     .value_counts()
+#     .head(15)
+#     .reset_index()
+# )
+monthly_news_quality = pd.read_csv("helpers/data/news/news_monthly_coverage_quality.csv")
+top_outlets_table = pd.read_csv("helpers/data/news/news_top_outlets_table.csv")
 
 top_outlets_table.columns = ["Outlet", "Number of articles"]
 topic_llm_table = topic_modelling_llm_table()
@@ -666,7 +668,7 @@ def update_news_plot_container(selected_plot, toggle_values):
                         dbc.Col(
                             dcc.Graph(
                                 figure=monthly_news_coverage_with_quality(
-                                    report_df,
+                                    monthly_news_quality,
                                     show_quality=show_quality,
                                 ),
                                 config={"displayModeBar": False},
