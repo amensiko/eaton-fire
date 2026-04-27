@@ -14,7 +14,6 @@ def load_wx():
 
     #drop extraneous
     df = df.drop(columns=["Year", "Month", "Day", "DateString"])
-    print(df.head)
     return df
 
 def load_aq(station=None):
