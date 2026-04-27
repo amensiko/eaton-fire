@@ -5,7 +5,7 @@ import yaml
 
 
 def load_wx():
-    wx_daily = r"data/weather/daily_data.csv"
+    wx_daily = r"helpers/data/weather/daily_data.csv"
     df = pd.read_csv(wx_daily)
     
     
@@ -22,7 +22,7 @@ def load_aq(station=None):
     loads air quality data, subsetted by station
     """
     #load processed data
-    pm25_daily = "data/airquality/pm25_focal_stations_daily.csv"
+    pm25_daily = "helpers/data/airquality/pm25_focal_stations_daily.csv"
     df = pd.read_csv(pm25_daily)
     #manage datetime
     df["date"] = pd.to_datetime(df['date'], format="%Y-%m-%d")
@@ -40,7 +40,7 @@ def load_aq(station=None):
 
 def load_biodiversity():
 
-    bio_daily = r"data/biodiversity/biodiversity_daily_counts_cr.csv"
+    bio_daily = r"helpers/data/biodiversity/biodiversity_daily_counts_cr.csv"
     df = pd.read_csv(bio_daily)
     
     
@@ -53,7 +53,7 @@ def load_biodiversity():
     return df
 
 def load_news():
-    news_daily = r"data/news/news_daily_counts_cr.csv"
+    news_daily = r"helpers/data/news/news_daily_counts_cr.csv"
     df = pd.read_csv(news_daily)
     #Convert to datetime
     df["date"] = pd.to_datetime(df["publish_date"], format="%Y-%m-%d")
@@ -83,7 +83,7 @@ def merge_sources(station=None):
     return merged
 
 def load_variable_lookup():
-    var_yaml = r"data/variables.yaml"
+    var_yaml = r"helpers/data/variables.yaml"
     var_lookup_flat = {}
     
     with open(var_yaml, 'r') as f:

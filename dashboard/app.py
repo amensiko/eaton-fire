@@ -4,6 +4,7 @@ from pathlib import Path
 import dash_bootstrap_components as dbc
 import pandas as pd
 import numpy as np
+import yaml
 
 from helpers.biodiversity import (
     fig_monthly_taxa_with_users,
@@ -37,6 +38,10 @@ from helpers.airquality import (
     build_focal_figure,
 )
 
+from helpers.CCF import cross_correlation
+from helpers.CCF_utils import load_variable_lookup
+
+
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
 
 app = Dash(__name__, external_stylesheets=[BRITE])
@@ -66,6 +71,24 @@ top_outlets_table.columns = ["Outlet", "Number of articles"]
 topic_llm_table = topic_modelling_llm_table()
 theme_long = pd.read_csv("helpers/data/news/themes.csv")
 theme_terms_table = themes_keywords()
+
+# CCF
+ccf_var_lookup = load_variable_lookup()
+ccf_variable_options = []
+for key, label in ccf_var_lookup.items():
+    ccf_variable_options.append(
+        {
+            "label": label,
+            "value": key,
+        }
+    )
+ccf_station_options = [
+    {"label": "Average across stations", "value": "average"},
+    {"label": "Glendora", "value": "Glendora"},
+    {"label": "Los Angeles-North Main Street", "value": "Los Angeles-North Main Street"},
+    {"label": "North Hollywood (NOHO)", "value": "North Hollywood (NOHO)"},
+    {"label": "Pasadena", "value": "Pasadena"},
+]
 
 app.layout = dbc.Container(
     [
@@ -317,6 +340,69 @@ app.layout = dbc.Container(
                                             html.Div(id="news-plot-container"),
                                         ],
                                         className="p-4"
+                                    )
+                                ],
+                            ),
+                            dbc.Tab(
+                                label="Cross-Correlation",
+                                tab_id="crosscorrelation",
+                                children=[
+                                    html.Div(
+                                        [
+                                            html.H3("Cross-Correlation", className="mb-3"),
+
+                                            html.P(
+                                                "Select two variables to examine how correlations change across daily time lags.",
+                                                className="text-muted",
+                                            ),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        [
+                                                            html.Label("Driver variable"),
+                                                            dcc.Dropdown(
+                                                                id="ccf-var1-dropdown",
+                                                                options=ccf_variable_options,
+                                                                value="ppt",
+                                                                clearable=False,
+                                                            ),
+                                                        ],
+                                                        width=4,
+                                                    ),
+
+                                                    dbc.Col(
+                                                        [
+                                                            html.Label("Lagged variable"),
+                                                            dcc.Dropdown(
+                                                                id="ccf-var2-dropdown",
+                                                                options=ccf_variable_options,
+                                                                value="pm25",
+                                                                clearable=False,
+                                                            ),
+                                                        ],
+                                                        width=4,
+                                                    ),
+
+                                                    dbc.Col(
+                                                        [
+                                                            html.Label("Air quality station"),
+                                                            dcc.Dropdown(
+                                                                id="ccf-station-dropdown",
+                                                                options=ccf_station_options,
+                                                                value="average",
+                                                                clearable=False,
+                                                            ),
+                                                        ],
+                                                        width=4,
+                                                    ),
+                                                ],
+                                                className="mb-4",
+                                            ),
+
+                                            html.Div(id="ccf-plot-container"),
+                                        ],
+                                        className="p-4",
                                     )
                                 ],
                             ),
@@ -735,6 +821,38 @@ def update_airquality_plot_container(selected_plot):
         content = html.Div("No plot selected.")
 
     return content
+
+
+@app.callback(
+    Output("ccf-plot-container", "children"),
+    Input("ccf-var1-dropdown", "value"),
+    Input("ccf-var2-dropdown", "value"),
+    Input("ccf-station-dropdown", "value"),
+)
+def update_ccf_plot(var1, var2, station_value):
+    station = None
+
+    if station_value != "average":
+        station = station_value
+
+    fig = cross_correlation(
+        var1=var1,
+        var2=var2,
+        station=station,
+    )
+
+    return html.Div(
+        dcc.Graph(
+            figure=fig,
+            config={"displayModeBar": False},
+            style={"width": "90%", "height": "650px"},
+        ),
+        style={
+            "display": "flex",
+            "justifyContent": "center",
+            "width": "100%",
+        },
+    )
 
 
 if __name__ == "__main__":

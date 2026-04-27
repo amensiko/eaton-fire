@@ -1,7 +1,8 @@
 from statsmodels.tsa.stattools import ccf
 import pandas as pd
 import plotly.graph_objects as go
-from CCF_utils import merge_sources, load_variable_lookup
+# from CCF_utils import merge_sources, load_variable_lookup
+from helpers.CCF_utils import merge_sources, load_variable_lookup
 
 #One function to calculate, one function to execute
 def compute_cross_correlation(df, var1, var2):
@@ -26,59 +27,43 @@ def compute_cross_correlation(df, var1, var2):
     return cross_correlation
 
 def plot_correlations(cross_corr, var1, var2):
-
-    """
-    Plots the cross-correlations
-    """
-
     correlations = cross_corr[0]
-
     confidence_ints = cross_corr[1]
-
-    #pull out the lag number (just the index of the correlation)
     lags = [i for i in range(len(correlations))]
 
-    #plot with lags as x, correlations as y:
-    fig = go.Figure(go.Bar(x=lags, 
-                           y=correlations, 
-                           error_y=dict(
-                            type='data',
-                            symmetric=False,
-                            array=confidence_ints[:, 1] - correlations,
-                            arrayminus=correlations - confidence_ints[:, 0])
-                            ))
-    
+    fig = go.Figure(
+        go.Bar(
+            x=lags,
+            y=correlations,
+            error_y=dict(
+                type="data",
+                symmetric=False,
+                array=confidence_ints[:, 1] - correlations,
+                arrayminus=correlations - confidence_ints[:, 0],
+            ),
+        )
+    )
+
     var_lookup = load_variable_lookup()
-    
-    #Get Variable Labels
     var1_label = var_lookup[var1]
     var2_label = var_lookup[var2]
-    
 
-    fig.update_layout(title=f"Cross-Correlation Plot: \n{var1_label} & {var2_label}")
-    fig.update_yaxes(title_text = "Correlation")
-    fig.update_xaxes(title_text = "Lag (days)")
+    fig.update_layout(
+        title=f"Cross-Correlation Plot: {var1_label} & {var2_label}",
+        template="plotly_white",
+        height=600,
+    )
+    fig.update_yaxes(title_text="Correlation")
+    fig.update_xaxes(title_text="Lag (days)")
 
-    fig.show()
+    return fig
 
 def cross_correlation(var1, var2, station=None):
-    """ 
-    This function computes cross correlation and makes a plot for a given set of variables, and a selected weather station if applicable.  
-
-    var1 (str): x/driver variable for CCF
-    var2 (str): y/lagged variable for CCF
-    station(str): weather station for PM25 data (optional - takes average if not specified)
-    """
-    #merge processed data across different sources
     df = merge_sources(station)
-
-    #Calculate cross correlations
     cross_corr = compute_cross_correlation(df, var1, var2)
-
-    #Plot it
-    plot_correlations(cross_corr, var1, var2)
+    fig = plot_correlations(cross_corr, var1, var2)
+    return fig
  
-
 
 def main():
     """
