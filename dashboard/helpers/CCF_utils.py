@@ -55,9 +55,9 @@ def load_biodiversity():
 def load_news():
     news_daily = r"helpers/data/news/news_daily_counts_cr.csv"
     df = pd.read_csv(news_daily)
-    #Convert to datetime
     df["date"] = pd.to_datetime(df["publish_date"], format="%Y-%m-%d")
     df = df.drop(columns=["publish_date"])
+    return df
 
 
 def merge_sources(station=None):
@@ -67,17 +67,18 @@ def merge_sources(station=None):
     #initialize list to hold loaded data
     to_merge = []
 
-    #load weather
     wx_data = load_wx()
     to_merge.append(wx_data)
 
-    #load pm25
-    pm25_data = load_aq(station) #load
+    pm25_data = load_aq(station)
     to_merge.append(pm25_data)
 
     bio_data = load_biodiversity()
     to_merge.append(bio_data)
-    
+
+    news_data = load_news()
+    to_merge.append(news_data)
+
     merged = reduce(lambda left, right: left.merge(right, on="date"), to_merge)
 
     return merged
