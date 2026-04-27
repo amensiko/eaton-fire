@@ -24,6 +24,11 @@ from helpers.news import (
     monthly_text_extraction_success,
     article_size_hist,
     monthly_news_coverage_with_quality,
+    topic_modelling,
+    topic_modelling_llm_table,
+    themes_lines,
+    themes_heatmap,
+    themes_keywords
 )
 
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
@@ -52,6 +57,9 @@ top_outlets_table = (
 )
 
 top_outlets_table.columns = ["Outlet", "Number of articles"]
+topic_llm_table = topic_modelling_llm_table()
+theme_long = pd.read_csv("helpers/data/news/themes.csv")
+theme_terms_table = themes_keywords()
 
 app.layout = dbc.Container(
     [
@@ -150,7 +158,7 @@ app.layout = dbc.Container(
                                                             options=[
                                                                 {"label": "Overview", "value": "news_overview"},
                                                                 {"label": "Topic Modelling", "value": "news_topics"},
-                                                                {"label": "LLM Analysis", "value": "news_llm"},
+                                                                {"label": "Keyword Analysis", "value": "news_keywords"},
                                                             ],
                                                             value="news_overview",
                                                             clearable=False,
@@ -417,6 +425,112 @@ def update_news_plot_container(selected_plot, toggle_values):
         )
 
         toggle_style = {"display": "flex", "justifyContent": "flex-end"}
+
+    elif selected_plot == "news_topics":
+        content = html.Div(
+            [
+                dcc.Graph(
+                    figure=topic_modelling(),
+                ),
+
+                html.H5("LLM Topic Labels and Descriptions", className="mt-4 mb-3"),
+
+                dash_table.DataTable(
+                    data=topic_llm_table.to_dict("records"),
+                    columns=[
+                        {"name": col, "id": col}
+                        for col in topic_llm_table.columns
+                    ],
+                    style_table={
+                        "overflowX": "auto",
+                    },
+                    style_cell={
+                        "textAlign": "left",
+                        "padding": "10px",
+                        "fontFamily": "Arial",
+                        "fontSize": "13px",
+                        "whiteSpace": "normal",
+                        "height": "auto",
+                    },
+                    style_header={
+                        "fontWeight": "bold",
+                        "backgroundColor": "#f8f9fa",
+                        "border": "1px solid black",
+                    },
+                    style_data={
+                        "border": "1px solid #ddd",
+                    },
+                    page_size=6,
+                ),
+            ]
+        )
+
+        toggle_style = {"display": "none"}
+
+    elif selected_plot == "news_keywords":
+        content = html.Div(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col(
+                            [
+                                html.H5("Theme Keyword Groups", className="mb-3"),
+
+                                dash_table.DataTable(
+                                    data=theme_terms_table.to_dict("records"),
+                                    columns=[
+                                        {"name": col, "id": col}
+                                        for col in theme_terms_table.columns
+                                    ],
+                                    style_table={"overflowX": "auto"},
+                                    style_cell={
+                                        "textAlign": "left",
+                                        "padding": "8px",
+                                        "fontFamily": "Arial",
+                                        "fontSize": "13px",
+                                        "whiteSpace": "normal",
+                                        "height": "auto",
+                                    },
+                                    style_header={
+                                        "fontWeight": "bold",
+                                        "backgroundColor": "#f8f9fa",
+                                        "border": "1px solid black",
+                                    },
+                                    style_data={
+                                        "border": "1px solid #ddd",
+                                    },
+                                ),
+                            ],
+                            width=3,
+                            className="pt-5"
+                        ),
+
+                        dbc.Col(
+                            [
+                                html.Div(
+                                    dcc.Graph(
+                                        figure=themes_lines(theme_long),
+                                        config={"displayModeBar": False},
+                                    ),
+                                    className="mb-4",
+                                ),
+
+                                html.Div(
+                                    dcc.Graph(
+                                        figure=themes_heatmap(theme_long),
+                                        config={"displayModeBar": False},
+                                    ),
+                                ),
+                            ],
+                            width=9,
+                        ),
+                    ],
+                    className="g-4",
+                )
+            ]
+        )
+
+        toggle_style = {"display": "none"}
 
     else:
         content = html.Div("No plot selected.")

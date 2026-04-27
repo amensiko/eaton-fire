@@ -244,72 +244,120 @@ def monthly_news_coverage_with_quality(report_df, show_quality=False):
 
     return fig
 
-def clean_text_for_topic_modeling(text):
-    if not isinstance(text, str):
-        return ""
-    
-    text = text.lower()
-    
-    # remove urls
-    text = re.sub(r"http\S+|www\.\S+", " ", text)
-    
-    # remove line breaks
-    text = re.sub(r"[\r\n\t]+", " ", text)
-    
-    # keep only letters and spaces
-    text = re.sub(r"[^a-z\s]", " ", text)
-    
-    # collapse whitespace
-    text = re.sub(r"\s+", " ", text).strip()
-    
-    tokens = text.split()
-    tokens = [tok for tok in tokens if tok not in all_stopwords and len(tok) > 2]
-    
-    return " ".join(tokens)
-
-def assign_phase(dt):
-    if pd.isna(dt):
-        return None
-    elif dt <= pd.Timestamp("2025-01-31"):
-        return "active_fire"
-    elif dt <= pd.Timestamp("2025-03-31"):
-        return "early_recovery"
-    else:
-        return "later_recovery"
-
-def prepare_text(news_df):
-    model_df = news_df.copy().reset_index(drop=True)
-    model_df["publish_date"] = pd.to_datetime(model_df["publish_date"], errors="coerce")
-    model_df["title_norm"] = (
-        model_df["title"]
-        .fillna("")
-        .str.lower()
-        .str.replace(r"\s+", " ", regex=True)
-        .str.strip()
+def topic_modelling():
+    plot_df = pd.read_csv("helpers/data/news/llama_plot_df.csv")
+    fig_phase = px.scatter(
+        plot_df,
+        # plot_df.sample(min(5000, len(plot_df)), random_state=42),
+        x="x",
+        y="y",
+        color="topic_label_clean",
+        hover_data=["title", "media_name", "phase", "month", "topic"],
+        animation_frame="phase",
+            category_orders={
+            "phase": ["active_fire", "early_recovery", "later_recovery"]
+        },
+        title="BERTopic clusters across timeline phases",
+        opacity=0.7
     )
-    model_df["text_norm"] = (
-        model_df["text"]
-        .fillna("")
-        .str.lower()
-        .str.replace(r"\s+", " ", regex=True)
-        .str.strip()
+
+    fig_phase.update_layout(
+        template="plotly_white",
+        height=700,
+        legend_title_text="Topic Labels"
     )
-    model_df = model_df.drop_duplicates(subset=["clean_url"])
-    model_df = model_df.drop_duplicates(subset=["title_norm"])
-    # model_df = model_df.drop_duplicates(subset=["text_norm"])
 
-    model_df["phase"] = model_df["publish_date"].apply(assign_phase)
-    model_df["month"] = model_df["publish_date"].dt.to_period("M").astype(str)
-    model_df["phase"].value_counts(dropna=False)
-    model_df["env_relevant"] = (
-        model_df["title"].fillna("").str.lower().str.contains(env_pattern, regex=True) |
-        model_df["text"].fillna("").str.lower().str.contains(env_pattern, regex=True)
+    return fig_phase
+
+def topic_modelling_llm_table():
+    topic_description_table = pd.read_csv("helpers/data/news/topic_description_table.csv")
+    return topic_description_table
+
+
+def themes_lines(theme_long):
+    theme_month_counts = (
+        theme_long.groupby(["month", "theme"])
+        .size()
+        .reset_index(name="n_articles")
     )
-    env_df = model_df[model_df['env_relevant'] == True].reset_index(drop=True)
 
+    fig_theme_month = px.line(
+        theme_month_counts,
+        x="month",
+        y="n_articles",
+        color="theme",
+        markers=True,
+        title="Environmental theme prevalence over time",
+        labels={"month": "Month", "n_articles": "Number of articles", "theme": "Theme"}
+    )
 
-    final_model_df = model_df[[
-        "mc_id", "title", "media_name", "publish_date", "month", "phase",
-        "url", "clean_url", "text", "text_len", "env_relevant"
-    ]].copy()
-    final_model_df["text_clean"] = final_model_df["text"].apply(clean_text_for_topic_modeling)
+    fig_theme_month.update_layout(
+        template="plotly_white",
+        height=420,
+        margin=dict(l=40, r=40, t=70, b=60),
+    )
+
+    return fig_theme_month
+
+def themes_heatmap(theme_long):
+    theme_phase_heatmap = (
+        theme_long.groupby(["phase", "theme"])
+        .size()
+        .reset_index(name="n_articles")
+        .pivot(index="phase", columns="theme", values="n_articles")
+        .fillna(0)
+    )
+
+    fig_theme_heatmap = px.imshow(
+        theme_phase_heatmap,
+        text_auto=True,
+        aspect="auto",
+        title="Environmental themes across phases",
+        labels={"x": "Theme", "y": "Phase", "color": "Articles"}
+    )
+
+    fig_theme_heatmap.update_layout(
+        template="plotly_white",
+        height=420,
+        margin=dict(l=40, r=40, t=70, b=60),
+    )
+
+    return fig_theme_heatmap
+
+def themes_keywords():
+    theme_dict = {
+        "Smoke / Air Quality": [
+            "air quality", "wildfire smoke", "smoke", "smoke exposure", "pm2.5",
+            "particulate", "pollution", "soot"
+        ],
+        "Debris / Cleanup": [
+            "debris", "debris removal", "cleanup", "hazardous debris",
+            "ash", "ash cleanup", "waste"
+        ],
+        "Water / Runoff / Contamination": [
+            "water quality", "drinking water", "contamination", "contaminated",
+            "runoff", "ash runoff", "watershed", "sediment", "erosion", "toxic", "toxins"
+        ],
+        "Utilities / Fire Cause": [
+            "edison", "sce", "utility", "utilities", "power lines",
+            "transmission", "equipment", "fire cause", "ignition"
+        ],
+        "Wildlife / Habitat / Trees": [
+            "wildlife", "habitat", "ecosystem", "vegetation", "tree", "trees",
+            "animals", "species", "biodiversity"
+        ],
+        "Public Health / Recovery": [
+            "public health", "respiratory", "health", "recovery", "rebuild",
+            "rebuilding", "displacement", "mental health"
+        ]
+    }
+    theme_terms_table = pd.DataFrame(
+        [
+            {
+                "Theme": theme,
+                "Keywords": ", ".join(keywords)
+            }
+            for theme, keywords in theme_dict.items()
+        ]
+    )
+    return theme_terms_table

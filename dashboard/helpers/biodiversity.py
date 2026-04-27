@@ -300,8 +300,6 @@ def fig_observation_map_slider(df, fire_start, sample_n=50000):
 
     pre_df = df_map[df_map["map_period"] == "Pre-fire"].copy()
     post_df = df_map[df_map["map_period"] == "Post-fire"].copy()
-    print(len(pre_df))
-    print(len(post_df))
 
     if len(pre_df) > sample_n:
         pre_df = pre_df.sample(sample_n, random_state=42)
