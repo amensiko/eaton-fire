@@ -4,19 +4,14 @@ import time
 import requests
 import pandas as pd
 import numpy as np
-import geopandas as gpd
-import matplotlib.pyplot as plt
 import plotly.express as px
 import plotly.graph_objects as go
 
 from shapely.geometry import Point
 from datetime import datetime
-from pyinaturalist import *
 from collections import Counter
-from sklearn.feature_extraction.text import CountVectorizer
 from pathlib import Path
 from sklearn.feature_extraction.text import CountVectorizer
-
 
 fire_start = pd.Timestamp("2025-01-07")
 fire_end = pd.Timestamp("2025-01-31")

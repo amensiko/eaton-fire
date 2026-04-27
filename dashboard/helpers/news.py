@@ -1,27 +1,13 @@
 import os
 import time
 import re
-import umap
-import torch
 import requests
 import pandas as pd
 import numpy as np
-import mediacloud.api
-import trafilatura
 import plotly.express as px
 import plotly.graph_objects as go
 
-from urllib.parse import urlsplit, urlunsplit, parse_qsl, urlencode
-from tqdm.auto import tqdm
 from datetime import date
-from tenacity import retry, stop_after_attempt, wait_exponential
-from readability.readability import Document
-from bs4 import BeautifulSoup
-from newspaper import fulltext
-from bertopic import BERTopic
-from sentence_transformers import SentenceTransformer
-from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS, CountVectorizer
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
 
 def load_and_clean_news_data():
     fixed_df = pd.read_csv("helpers/data/news/all_stories_fixed.csv")
@@ -231,83 +217,6 @@ def monthly_news_coverage_with_quality(monthly, show_quality=False):
 
     return fig
 
-# def monthly_news_coverage_with_quality(report_df, show_quality=False):
-#     monthly = (
-#         report_df.dropna(subset=["publish_date"])
-#         .assign(month=report_df["publish_date"].dt.to_period("M").astype(str))
-#         .groupby("month")
-#         .agg(
-#             total_articles=("mc_id", "count"),
-#             with_text=("has_text", "sum"),
-#             usable_text=("usable_text", "sum"),
-#         )
-#         .reset_index()
-#     )
-
-#     monthly["month_dt"] = pd.to_datetime(monthly["month"])
-#     monthly["pct_with_text"] = 100 * monthly["with_text"] / monthly["total_articles"]
-#     monthly["pct_usable_text"] = 100 * monthly["usable_text"] / monthly["total_articles"]
-
-#     fig = go.Figure()
-
-#     fig.add_trace(
-#         go.Bar(
-#             x=monthly["month_dt"],
-#             y=monthly["total_articles"],
-#             name="Monthly articles",
-#         )
-#     )
-
-#     if show_quality:
-#         fig.add_trace(
-#             go.Scatter(
-#                 x=monthly["month_dt"],
-#                 y=monthly["pct_with_text"],
-#                 mode="lines+markers",
-#                 name="Has text (%)",
-#                 yaxis="y2",
-#             )
-#         )
-
-#         fig.add_trace(
-#             go.Scatter(
-#                 x=monthly["month_dt"],
-#                 y=monthly["pct_usable_text"],
-#                 mode="lines+markers",
-#                 name="≥1000 chars (%)",
-#                 yaxis="y2",
-#             )
-#         )
-
-#         fig.update_layout(
-#             yaxis2=dict(
-#                 title="Text extraction success (%)",
-#                 overlaying="y",
-#                 side="right",
-#                 range=[0, 100],
-#                 showgrid=False,
-#             )
-#         )
-
-#     fig.update_layout(
-#         template="plotly_white",
-#         title="Monthly Eaton Fire News Coverage",
-#         height=550,
-#         margin=dict(l=40, r=80, t=80, b=90),
-#         yaxis_title="Number of articles",
-#         xaxis_title="Month",
-#         hovermode="x unified",
-#         legend=dict(
-#             orientation="h",
-#             yanchor="top",
-#             y=-0.18,
-#             xanchor="center",
-#             x=0.5,
-#             title_text=""
-#         ),
-#     )
-
-#     return fig
 
 def topic_modelling():
     plot_df = pd.read_csv("helpers/data/news/llama_plot_df_slim.csv")
