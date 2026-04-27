@@ -86,13 +86,84 @@ app.layout = dbc.Container(
                     dbc.Tabs(
                         [
                             dbc.Tab(
-                                label="Overall",
-                                tab_id="overall",
+                                label="Welcome",
+                                tab_id="welcome",
                                 children=[
                                     html.Div(
                                         [
-                                            html.H3("Overall", className="mb-3"),
-                                            html.P("Put your overall dashboard summary, key stats, and combined plots here."),
+                                            html.H3("Welcome", className="mb-3"),
+
+                                            html.P(
+                                                "This dashboard explores environmental impacts of the Eaton Fire through biodiversity observations, air quality measurements, weather data, news coverage, and cross-dataset comparisons."
+                                            ),
+
+                                            html.P(
+                                                "Use the tabs above to explore how ecological observations, atmospheric conditions, monitoring data, and public reporting changed before, during, and after the fire."
+                                            ),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        dbc.Card(
+                                                            dbc.CardBody([
+                                                                html.H5("Air Quality"),
+                                                                html.P("Explore PM2.5 monitoring stations, historical comparisons, and focal station time series.")
+                                                            ])
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                    dbc.Col(
+                                                        dbc.Card(
+                                                            dbc.CardBody([
+                                                                html.H5("Biodiversity"),
+                                                                html.P("View iNaturalist observations, taxonomic patterns, user effort, maps, and description keywords.")
+                                                            ])
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                    dbc.Col(
+                                                        dbc.Card(
+                                                            dbc.CardBody([
+                                                                html.H5("Weather"),
+                                                                html.P("Examine weather conditions relevant to fire behavior, smoke transport, and recovery context.")
+                                                            ])
+                                                        ),
+                                                        width=4,
+                                                    ),
+                                                ],
+                                                className="g-4 mt-3",
+                                            ),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        dbc.Card(
+                                                            dbc.CardBody([
+                                                                html.H5("News Reports"),
+                                                                html.P("Analyze media coverage, environmental themes, topic models, and LLM-generated summaries.")
+                                                            ])
+                                                        ),
+                                                        width=6,
+                                                    ),
+                                                    dbc.Col(
+                                                        dbc.Card(
+                                                            dbc.CardBody([
+                                                                html.H5("Cross-Correlation"),
+                                                                html.P("Compare patterns across datasets to explore possible relationships between weather, air quality, biodiversity, and news attention.")
+                                                            ])
+                                                        ),
+                                                        width=6,
+                                                    ),
+                                                ],
+                                                className="g-4 mt-3",
+                                            ),
+
+                                            html.Hr(className="my-4"),
+
+                                            html.P(
+                                                "Created by Anastasija Mensikova, Will Behm, and Erik Lagerquist",
+                                                className="text-center text-muted mb-0",
+                                            ),
                                         ],
                                         className="p-4"
                                     )
@@ -232,7 +303,7 @@ app.layout = dbc.Container(
                             ),
                         ],
                         id="main-tabs",
-                        active_tab="overall",
+                        active_tab="welcome",
                     )
                 ]
             ),
