@@ -160,10 +160,24 @@ app.layout = dbc.Container(
 
                                             html.Hr(className="my-4"),
 
-                                            html.P(
-                                                "Created by Anastasija Mensikova, Will Behm, and Erik Lagerquist",
+                                            html.Div(
+                                                [
+                                                    html.Img(
+                                                        src="/assets/uvm_logo.png",
+                                                        style={"height": "36px", "marginRight": "12px"}
+                                                    ),
+                                                    html.Span(
+                                                        "Created by Anastasija Mensikova, Will Behm, and Erik Lagerquist"
+                                                    ),
+                                                ],
                                                 className="text-center text-muted mb-0",
-                                            ),
+                                                style={
+                                                    "display": "flex",
+                                                    "justifyContent": "center",
+                                                    "alignItems": "center",
+                                                    "gap": "10px",
+                                                },
+                                            )
                                         ],
                                         className="p-4"
                                     )
