@@ -1,6 +1,6 @@
 variables:
   Meteorological:
-    ppt: precipitation (mm)
+    ppt: Precipitation (mm)
     vpdmax: Vapor Pressure Deficit (Daily Maximum, hPa)
     tmean: Mean Temperature (C)
   Air Quality:
