@@ -119,8 +119,8 @@ def build_map_figure(
         ),
         legend=dict(x=0.01, y=0.99, bgcolor="rgba(255,255,255,0.8)"),
         margin=dict(l=0, r=0, t=60, b=0),
-        width=900,
         height=650,
+        autosize=True,
     )
 
     return fig
@@ -260,7 +260,8 @@ def build_monthly_figure(
         ),
         xaxis=dict(title="Month", categoryorder="array", categoryarray=MONTH_SORT),
         yaxis=dict(title="PM2.5 (µg/m³)"),
-        width=750, height=480,
+        height=620,
+        autosize=True,
         hovermode="x unified",
         template="plotly_white",
     )
@@ -430,7 +431,8 @@ def build_focal_figure(
         ),
         xaxis=dict(title="Date", tickformat="%b %d"),
         yaxis=dict(title="PM2.5 (µg/m³)"),
-        width=900, height=500,
+        height=620,
+        autosize=True,
         hovermode="x unified",
         template="plotly_white",
     )

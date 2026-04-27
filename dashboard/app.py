@@ -31,6 +31,12 @@ from helpers.news import (
     themes_keywords
 )
 
+from helpers.airquality import (
+    build_map_figure,
+    build_monthly_figure,
+    build_focal_figure,
+)
+
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
 
 app = Dash(__name__, external_stylesheets=[BRITE])
@@ -87,6 +93,40 @@ app.layout = dbc.Container(
                                         [
                                             html.H3("Overall", className="mb-3"),
                                             html.P("Put your overall dashboard summary, key stats, and combined plots here."),
+                                        ],
+                                        className="p-4"
+                                    )
+                                ],
+                            ),
+                            dbc.Tab(
+                                label="Air Quality",
+                                tab_id="airquality",
+                                children=[
+                                    html.Div(
+                                        [
+                                            html.H3("Air Quality", className="mb-3"),
+
+                                            dbc.Row(
+                                                [
+                                                    dbc.Col(
+                                                        dcc.Dropdown(
+                                                            id="airquality-plot-dropdown",
+                                                            options=[
+                                                                {"label": "Monitor Map", "value": "monitor_map"},
+                                                                {"label": "Historical Comparison", "value": "historical_comparison"},
+                                                                {"label": "Focal Stations", "value": "focal_stations"},
+                                                            ],
+                                                            value="monitor_map",
+                                                            clearable=False,
+                                                        ),
+                                                        width=5,
+                                                    ),
+                                                ],
+                                                className="mb-4",
+                                                align="center",
+                                            ),
+
+                                            html.Div(id="airquality-plot-container"),
                                         ],
                                         className="p-4"
                                     )
@@ -537,6 +577,74 @@ def update_news_plot_container(selected_plot, toggle_values):
         toggle_style = {"display": "none"}
 
     return content, toggle_style
+
+
+@app.callback(
+    Output("airquality-plot-container", "children"),
+    Input("airquality-plot-dropdown", "value"),
+)
+def update_airquality_plot_container(selected_plot):
+    if selected_plot == "monitor_map":
+        content = html.Div(
+            [
+                dcc.Graph(
+                    figure=build_map_figure(
+                        perimeter_path="helpers/data/airquality/eaton_fire_extent.geojson",
+                        monitors_path="helpers/data/airquality/site_names.csv",
+                    ),
+                    style={"width": "100%", "height": "650px"},
+                    config={"responsive": True},
+                )
+            ],
+            style={
+                "width": "100%",
+                "display": "flex",
+                "justifyContent": "center",
+            }
+        )
+    elif selected_plot == "historical_comparison":
+        content = html.Div(
+            [
+                dcc.Graph(
+                    figure=build_monthly_figure(
+                        monthly_csv="helpers/data/airquality/monthly_baseline_oct_mar_2000_2024.csv",
+                        event_csv="helpers/data/airquality/event_window_daily.csv",
+                    ),
+                    style={"width": "90%", "height": "620px"},
+                    config={"responsive": True, "displayModeBar": False},
+                )
+            ],
+            style={
+                "display": "flex",
+                "justifyContent": "center",
+                "width": "100%",
+            },
+        )
+
+    elif selected_plot == "focal_stations":
+        content = html.Div(
+            [
+                dcc.Graph(
+                    figure=build_focal_figure(
+                        event_csv="helpers/data/airquality/event_window_daily.csv",
+                        site_csv="helpers/data/airquality/event_window_site_specific.csv",
+                        monthly_csv="helpers/data/airquality/monthly_baseline_oct_mar_2000_2024.csv",
+                    ),
+                    style={"width": "90%", "height": "620px"},
+                    config={"responsive": True, "displayModeBar": False},
+                )
+            ],
+            style={
+                "display": "flex",
+                "justifyContent": "center",
+                "width": "100%",
+            },
+        )
+
+    else:
+        content = html.Div("No plot selected.")
+
+    return content
 
 
 if __name__ == "__main__":
