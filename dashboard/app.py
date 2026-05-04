@@ -45,7 +45,14 @@ from helpers.weather import construct_multipanel_bars, construct_multipanel_box
 
 BRITE = "https://bootswatch.com/5/brite/bootstrap.min.css"
 
-app = Dash(__name__, external_stylesheets=[BRITE])
+# app = Dash(__name__, external_stylesheets=[BRITE])
+app = Dash(
+    __name__,
+    external_stylesheets=[
+        BRITE,
+        "/assets/custom.css",
+    ],
+)
 
 # Biodiversity 
 bio_data = load_biodiversity_data()
